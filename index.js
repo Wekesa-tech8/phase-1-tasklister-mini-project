@@ -1,9 +1,18 @@
-function logSubmit(event) {
+document.addEventListener("DOMContentLoaded", () => {
+  const taskForm = document.getElementById("create-task-form");
+  const taskList = document.getElementById("tasks");
+
+  function handleFormSubmit(event) {
     event.preventDefault(); 
-    log.textContent = `Form Submitted! Time stamp: ${event.timeStamp}`;
+    const taskDescription = document.getElementById("new-task-description").value;
+
+    if (taskDescription !== "") {
+      const taskItem = document.createElement("li");
+      taskItem.textContent = taskDescription;
+      taskList.appendChild(taskItem);
+      document.getElementById("new-task-description").value = "";
+    }
   }
-  
-  const form = document.getElementById("form");
-  const log = document.getElementById("log");
-  
-  form.addEventListener("submit", logSubmit);
+
+  taskForm.addEventListener("submit", handleFormSubmit);
+});
